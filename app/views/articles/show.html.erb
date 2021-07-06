@@ -1,0 +1,13 @@
+<div class="small-container center-block">
+<div class="container" id="states_container">
+<h1><%=@article.title%> </h1>
+<br>
+</div>
+<div class="container">
+<%= @article.content%>
+</div>
+<div>
+<br>
+<%=link_to "Eliminar articulo",@article, class: "btn btn-primary", method: :delete%>
+</div>
+</div>  

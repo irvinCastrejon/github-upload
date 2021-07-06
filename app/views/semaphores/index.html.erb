@@ -1,0 +1,20 @@
+<div class="container ">
+<div class="d-flex justify-content-around">
+  <h1>Semaforo por estado</h1>  
+  <%= link_to "Agregar registro", new_semaphore_path, class: "btn btn-primary align-self-center" %>
+</div>
+<div class="d-block card padding margin-top small-container center-block">
+
+  <% @semaphores.each do |id, sem| %>
+    <div class="w-100">
+      <h3 class="text-uppercase">El estado <%= sem.state.estado.capitalize %> estuvo en semáforo <%= sem.color.titleize %></h3>
+      <p class= "text-secondary">de <%= sem.fecha_ini %> al <%= sem.fecha_fin %></p>
+      <%= link_to "Agregar Semaforo", new_semaphore_path(estado: sem.state_id) %>
+      <%= link_to "Histórico del estado", state_semaphore_path(sem.state_id), class: "btn btn-secondary align-self-center" %>
+</div>
+    <hr>
+    <hr> 
+    
+  <% end %>
+</div>
+</div>

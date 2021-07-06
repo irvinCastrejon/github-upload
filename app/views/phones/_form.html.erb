@@ -1,0 +1,14 @@
+<%= form_with(model: phone, local: true) do |form| %>
+    <div class="form-group">
+      <%= form.label :state_id, "Estado*"%>
+      <%= form.select(:state_id, options_for_select(State.all.pluck(:estado, :id), 
+      phone.state_id), {include_blank: true}, {class: "form-control", required: true}) %>
+    </div>
+  
+    <div class="form-group">
+      <%= form.label :number, "Número telefónico*" %>
+      <%= form.text_field :numero, class: "form-control", required: true %>
+    </div>
+  
+    <%= form.submit "Agregar Telefono", class: "btn btn-primary mt-3" %>
+  <% end %>

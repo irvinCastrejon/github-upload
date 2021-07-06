@@ -1,0 +1,24 @@
+<style>
+      .hidden{
+        display: none;
+      }
+    </style>
+<div class="container">
+<%= form_with(model: @phones, local: true) do |form| %>
+<br>
+    <div class="form_group">
+   <h2> <%= form.label :state_id, "Estado: " %> <%= @phones.state.estado.capitalize %> </h2>
+    <%=form.select(:state_id, options_for_select(State.all.pluck(:estado, :id), @phones.state_id), {include_blank: true}, {class: "form-control hidden", required: true}) %>
+    </div>
+    
+    
+    <div class= 'field'>
+    <%=form.label :numero %>
+    <%=form.text_field :numero %>
+    </div>
+    
+    <div>
+    <%= form.submit "Guardar",  class: "btn btn-primary mt-3" %>
+    </div>
+    <%end%>
+    </div>

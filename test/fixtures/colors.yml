@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  color_edo,: MyString
+  belog_to: 
+  fecha_ini: 
+  fecha_fin: 2021-04-23
+
+two:
+  color_edo,: MyString
+  belog_to: 
+  fecha_ini: 
+  fecha_fin: 2021-04-23

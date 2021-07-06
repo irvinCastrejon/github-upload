@@ -1,0 +1,19 @@
+<div class="container ">
+<div class="d-flex justify-content-around">
+<h1>Teléfonos registrados</h1>
+<%= link_to "Añadir registro", new_phone_path, class: "btn btn-secondary" %>
+</div>
+<div class="d-block card padding margin-top small-container center-block">
+<% @phones.each do |id, phone| %>
+  <div>
+    <h3>Estado: <%= phone.state.estado %></h3>
+    <p>Telefono: <%= phone.numero %></p>
+    <%= link_to "Más información", state_phones_path(phone.state_id), class: "btn btn-primary" %>
+    <%= link_to "Editar", edit_phone_path(phone), class: "btn btn-success" %>
+    <%= link_to "Eliminar", phone, method: :delete, class: "btn btn-danger" %>
+  </div>
+  <hr>
+  <hr>
+<% end %>
+</div>
+</div>

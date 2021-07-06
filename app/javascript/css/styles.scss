@@ -1,0 +1,71 @@
+@import '~bootstrap/scss/bootstrap';
+@import 'trix/dist/trix';
+.center {
+    display: flex;
+    justify-content: center;
+  }
+  .center0 {
+    padding: 10px;
+    margin: 10px;
+  }
+.small-container
+{
+    width: 100%;
+    max-width: 550px;
+}
+.large-container
+{
+    width: 100%;
+    max-width: 960px;
+}
+.center-block
+{
+    margin:0 auto;
+}
+body
+{
+    .margin-top
+    {
+        margin-top: 1.5em;
+    }
+    .field
+    {
+        @extend .margin-top;
+        label
+        {
+            @extend .text-uppercase;
+            @extend .text-secondary;
+        }
+        &:first-of-type
+        {
+            margin-top: 0;
+        }
+        input
+        {
+            @extend .form-control;
+            @extend .bg-light;
+        }
+        input[type='checkbox']
+        {
+            display: inline-block;
+            width: auto;
+            vertical-align: middle;
+            margin-right: 0,5en;
+        }
+    }
+}
+
+//Imagenes
+.picture { 
+    background-color: #F9F9F9;
+    border: 1px solid #CCCCCC; padding: 3px;
+    font: 11px/1.4em Arial, sans-serif; 
+}
+.right { 
+    margin: 0.5em 0pt 0.5em 0.8em; 
+    float:right; 
+}
+.left { 
+    margin: 0.5em 0.8em 0.5em 0; 
+    float:left;
+}

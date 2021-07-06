@@ -1,0 +1,132 @@
+<div class="small-container center-block">
+<h1>Elige un Estado para Ver su Informacion</h1>
+<div>
+<%= select_tag :state_select, options_for_select(@states.map{ |s| [s.estado, s.id]}), 
+{class: "form-control", required: true, include_blank: true}%>
+  
+  <!-- Clase para ocultar los divs -->
+  <style>
+      .hidden{
+        display: none;
+      }
+    </style>
+
+</div> 
+<div class="col-9">
+<div class="d-block card padding margin-top small-container center-block">
+ <div class="small-container center">
+<% if @states.present? %>
+  <div id="states_container" >
+    <% @states.each do |state| %>
+  <div id="state_<%= state.id %>_box" class = "hidden">
+        
+        <h3><%= state.estado %></h3>
+        <hr>
+        <h5>Semáforo epidemiológico actual </h5>
+      
+        <% semaphore = @semaphores[state.id] %>
+          
+          <% if semaphore %>
+          
+            <div class = "w-100">
+              <ul>
+                <li><strong>Color:</strong> <%= semaphore.color.capitalize %></li>
+                <li><strong>Fecha inicio:</strong> <%= semaphore.fecha_ini %></li>
+                <li><strong>Fecha fin:</strong> <%= semaphore.fecha_fin %></li>
+              </ul>
+             </div>
+             
+          <% end %> 
+          
+          <%= link_to "Cambiar color ", new_semaphore_path(estado:state.id),
+           class: "btn btn-secondary align-self-center"%>
+
+              
+
+            <!-- Colapse para Mostrar el Historico del estado-->
+          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+          Historico del estado
+          </button>
+          <!-- Contenido del Collapse-->
+        <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+          <% state.semaphores.each do |sem| %>
+              <ul>
+                <li><strong>Color:</strong> <%= sem.color.capitalize %></li>
+                <li><strong>Fecha inicio:</strong> <%= sem.fecha_ini %></li>
+                <li><strong>Fecha fin:</strong> <%= sem.fecha_fin %></li>
+              </ul>
+              <hr>
+            <% end %>
+        </div>
+        </div>
+                                
+
+        <h5>Telefonos</h5>
+        <ul>
+        <% phones = @phones[state.id] %>
+    <% state.phones.each do |phone| %>
+        <li>Telèfono <%= phone.numero %></li>
+          <%= link_to "Editar", edit_phone_path(phone), class: "btn btn-success" %>
+        
+        </ul>
+        
+        <% end %>
+        <br><br>
+        <%= link_to "Añadir Telèfono", new_phone_path(estado:state.id), class: "btn btn-secondary" %>
+        </div>
+       
+    <% end %>
+  </div>
+  </div>
+<% end %>
+</div>
+</div>
+ <% if params[:state_id].present? %>
+
+   <span data-state-selected>  <%= params[:state_id] %> </span>
+ <% end %>
+ </div>
+
+
+<script>          
+// Variable que almacena el estado actual seleccionado
+// Añado el valor de 0 ya que es el div que se muestra
+// en un inicio
+let currentState = 0;
+// Función que muestra el contenido a partir del cambio
+// de valor del select
+const handleChangeValue = ({target}) => 
+{
+  // Ocultar el div que se encuentra actualmente visible
+  console.log(currentState)
+  if(currentState)
+  {
+      const divToHide = document.querySelector('#state_'+currentState+'_box');
+      !divToHide.classList.contains("hidden") && divToHide.classList.add("hidden");
+  }
+  // Actualiza el valor del estado a partir del valor seleccionado
+  // La variable "target" corresponde al select que contiene los estados
+  currentState = target.value;
+
+  // Obtengo el div correspondiente al valor seleccionado
+  
+  const divToShow = document.querySelector('#state_'+currentState+'_box');
+
+  // Muestro el div correspondiente eliminando la clase hidden 
+  // (ver los estilos en la etiqueta head)
+  divToShow.classList.contains("hidden") && divToShow.classList.remove("hidden");
+
+  return;
+};
+
+// Añado la función al select una vez que el contenido de la página está lista
+// para desplegarse.
+window.addEventListener("DOMContentLoaded", () => {
+  const stateSelect = document.querySelector('#state_select');
+  stateSelect.onchange = handleChangeValue;
+});
+
+</script>
+</div>
+  

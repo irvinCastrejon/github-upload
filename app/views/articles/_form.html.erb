@@ -1,0 +1,18 @@
+<%= form_with(model: @article,local: true) do |form| %>
+
+    <div class='field'>
+     <%=form.label :title, "titulo" %>
+     <%=form.text_field :title%>
+     </div>
+    <div class='field'>
+     <%=form.label :content, "cuerpo de la noticia" %>
+     <%=form.rich_text_area :content %>
+     </div>
+
+     <div>
+     <%=form.submit "Guardar", class: "btn btn-primary mt-3"  %>
+     </div>
+
+   
+
+     <%end%>

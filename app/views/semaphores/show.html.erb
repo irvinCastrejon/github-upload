@@ -1,0 +1,14 @@
+<div class="container mt-3">
+  <div class="d-flex justify-content-around">
+    <h1>Semáforo del estado de <%= @semaphore.state.estado.capitalize %></h1>
+    <div class="d-flex">
+    <%= link_to "ver semáforos", semaphores_path, class: "btn btn-primary align-self-center" %>
+    <%= link_to "Histórico del estado", state_semaphore_path(@semaphore.state_id), class: "btn btn-secondary align-self-center" %>
+    </div>
+  </div>
+  <ul>
+    <li><strong>Color:</strong> <%= @semaphore.color.capitalize %></li>
+    <li><strong>Fecha de inicio:</strong> <%= @semaphore.fecha_ini %></li>
+    <li><strong>Fecha de finalización:</strong> <%= @semaphore.fecha_fin %></li>
+  </ul>
+</div>
